@@ -13,7 +13,7 @@ var papel = cuadrito.getContext("2d");
 var x = 150;
 var y = 150;
 
-dibujarLinea("red", x-1, y-1, x+1, x-1, papel);
+dibujarLinea("red", x-1, y-1, x+1, x+1, papel);
 
 function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo)
 {
@@ -30,7 +30,6 @@ function dibujarTeclado(evento)
 {
   var colorcito = "blue";
   var movimiento = 3;
-
   switch(evento.keyCode)
   {
     case teclas.UP:
@@ -42,8 +41,8 @@ function dibujarTeclado(evento)
       y = y + movimiento;
     break;
     case teclas.LEFT:
-    dibujarLinea(colorcito, x, y, x - movimiento, y, papel);
-    x = x - movimiento;
+      dibujarLinea(colorcito, x, y, x - movimiento, y, papel);
+      x = x - movimiento;
     break;
     case teclas.RIGHT:
     dibujarLinea(colorcito, x, y, x + movimiento, y, papel);
