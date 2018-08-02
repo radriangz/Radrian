@@ -5,17 +5,16 @@ var teclas = {
   LEFT: 37,
   RIGHT: 39
 };
-console.log(addEventListener);
 
-document.addEventListener("keyup", dibujarTeclado);
+document.addEventListener("mousedown", dibujarTeclado);
 var cuadrito = document.getElementById("area_de_dibujo");
 var papel = cuadrito.getContext("2d");
 var x = 150;
 var y = 150;
 
-dibujarLinea("red", x-1, y-1, x+1, x+1, papel);
+dibujarLinea("red", x-1, y-1, x+1, x+1, papel, 0);
 
-function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo)
+function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo, lol)
 {
   lienzo.beginPath();
   lienzo.strokeStyle = color;
@@ -27,10 +26,15 @@ function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo)
 }
 
 function dibujarTeclado(evento)
-{
+{00
   var colorcito = "blue";
   var movimiento = 3;
-  switch(evento.keyCode)
+  console.log(evento)
+  if(evento.keyCode == teclas.DOWN)
+  {
+    console.log("Vamo' pá abajo");
+  }
+  /*switch(evento.keyCode)
   {
     case teclas.UP:
       dibujarLinea(colorcito, x, y, x, y - movimiento, papel);
@@ -48,7 +52,7 @@ function dibujarTeclado(evento)
     dibujarLinea(colorcito, x, y, x + movimiento, y, papel);
     x = x + movimiento;
     break;
-  }
+  }*/
 }
 
 /*if(evento.keyCode == teclas.DOWN)
