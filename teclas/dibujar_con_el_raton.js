@@ -2,35 +2,32 @@
 var lienzo = document.getElementById("area_de_dibujo");
 var papel = lienzo.getContext("2d");
 
-document.addEventListener("mousedown", dibujar);
-//document.addEventListener("mousemove") dibujar2);
+//document.addEventListener("mousedown", dibujarMouseDown);
+document.addEventListener("mousemove", dibujarMouseMove);
 
-function dibujar(param)
+/*function dibujarMouseDown(event)
 {
-  console.log(param);
-  xi = param.layerX;
-  yi = param.layerY;
+  xi = event.layerX;
+  yi = event.layerY;
   //alert(xi + ", " + yi);
     dibujarLinea("black", xi, yi, 1, 499, papel, 3);
-}
+    console.log(event);
+}*/
 
-function dibujar2()
+function dibujarMouseMove(event)
 {
-  alert("funciona");
-}
+  xi = event.screenX;
+  yi = event.screenY;
+  xf = event.clientX;
+  yf = event.clientY;
+  console.log(event);
+  dibujarLinea("black", xi, yi, xf, yf, papel, 3);
+  }
 
-marco();
-
-function marco(dibujarLinea)
-{
-  a = 1;
-  b = 499;
-  marcoCol = "gray";
-  dibujarLinea("marcoCol", a, a, a, b, papel, 1);
-  dibujarLinea("marcoCol", a, a, b, a, papel, 1);
-  dibujarLinea("marcoCol", a, b, b, b, papel, 1);
-  dibujarLinea("marcoCol", b, a, b, b, papel, 1);
-}
+dibujarLinea("gray", 1, 1, 1, 499, papel, 1);
+dibujarLinea("gray", 1, 1, 499, 1, papel, 1);
+dibujarLinea("gray", 1, 499, 499, 499, papel, 1);
+dibujarLinea("gray", 499, 1, 499, 499, papel, 1);
 
 function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo, grosor)
 {
