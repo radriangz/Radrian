@@ -14,15 +14,35 @@ document.addEventListener("mousemove", dibujarMouseMove);
     console.log(event);
 }*/
 
+var xi = 0;
+var yi = 0;
+
 function dibujarMouseMove(event)
 {
-  xi = event.screenX;
-  yi = event.screenY;
-  xf = event.clientX;
-  yf = event.clientY;
-  console.log(event);
+  //alert("d");
+  xi = event.layerX;
+  yi = event.layerY;
+
+  var xf = event.layerX + event.movementX;
+  var yf = event.layerY + event.movementY;
+
+  console.log("xi: " + xi + ", yi: " + yi + ", xf: " + xf + ", yf: " + yf);
+
   dibujarLinea("black", xi, yi, xf, yf, papel, 3);
-  }
+
+  /*xi = xf;
+  yi = yf;
+
+  console.log("xi: " + xi + ", yi: " + yi);*/
+
+  /*console.log("layerX = " + event.layerX + " layerY = " + event.layerY +
+  ", movementX = " + event.movementX + ", movementY = " + event.movementY +
+  ", offsetX = " + event.offsetX + ", offsetY = " + event.offsetY +
+  ", pageX = " + event.pageX + ", pageY = " + event.pageY)*/
+
+  //console.log(event);
+  //
+}
 
 dibujarLinea("gray", 1, 1, 1, 499, papel, 1);
 dibujarLinea("gray", 1, 1, 499, 1, papel, 1);
