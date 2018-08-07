@@ -2,21 +2,33 @@
 var lienzo = document.getElementById("area_de_dibujo");
 var papel = lienzo.getContext("2d");
 
-//document.addEventListener("mousedown", dibujarMouseDown);
-document.addEventListener("mousemove", dibujarMouseMove);
+lienzo.addEventListener("mousedown", comienzaLinea);
+lienzo.addEventListener("mousemove", dibujarLineaMouseDown);
+lienzo.addEventListener("mouseup", terminarLinea);
+
+
+//Si activo la linea del addEventListener ("mouseup", terminar linea); dibuja la linea al entrar al lienzo
+// si desactivo la linea addEventListener("mouseup", terminarLinea); se toman xi/yi=0 y sale una linea rara
+
 
 var xi = 0;
 var yi = 0;
 var clickRaton = false;
 
-function dibujarMouseMove(event)
+function comienzaLinea(event) //Por qué se le pone el event?
 {
-  if (clickRaton)
+  clickRaton = true;
+  xi = event.layerX; //Según yo, porque el event es lo que lo activa, el event mousedown lo activa,
+                    //y de ese evento se consiguen las propiedades layerX/Y
+  yi = event.layerY;
+}
+
+function dibujarLineaMouseDown(event)
+{
+  if (clickRaton) //Yo le puse originalmente =true pero no funciona con =true
   {
   var xf = event.layerX + event.movementX;
   var yf = event.layerY + event.movementY;
-
-  //console.log("xi: " + xi + ", yi: " + yi + ", xf: " + xf + ", yf: " + yf);
 
   dibujarLinea("black", xi, yi, xf, yf, papel, 3);
 
@@ -25,13 +37,9 @@ function dibujarMouseMove(event)
   }
 }
 
-dibujarMarcoDelLienzo();
-function dibujarMarcoDelLienzo ()
+function terminarLinea(event)
 {
-  dibujarLinea("gray", 1, 1, 1, 499, papel, 1);
-  dibujarLinea("gray", 1, 1, 499, 1, papel, 1);
-  dibujarLinea("gray", 1, 499, 499, 499, papel, 1);
-  dibujarLinea("gray", 499, 1, 499, 499, papel, 1);
+  clickRaton = false;
 }
 
 function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo, grosor)
@@ -43,4 +51,13 @@ function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo, grosor)
   lienzo.lineTo(xfinal, yfinal);
   lienzo.stroke();
   lienzo.closePath();
+}
+
+dibujarMarcoDelLienzo();
+function dibujarMarcoDelLienzo ()
+{
+  dibujarLinea("gray", 1, 1, 1, 499, papel, 1);
+  dibujarLinea("gray", 1, 1, 499, 1, papel, 1);
+  dibujarLinea("gray", 1, 499, 499, 499, papel, 1);
+  dibujarLinea("gray", 499, 1, 499, 499, papel, 1);
 }
