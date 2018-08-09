@@ -48,6 +48,8 @@ function dibujar(event)
 
 function moverLobo(evento)
 {
+  x = lobo.cargaOK.x;
+  y = lobo.cargaOK.y;
   var movimiento = 5
   if(evento.keyCode == teclas.UP)
   {
