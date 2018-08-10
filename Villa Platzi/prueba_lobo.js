@@ -36,16 +36,16 @@ function dibujar(event)
   {
     papel.drawImage(fondo.imagen, 0, 0);
   }
-}
-
-function moverLobo(evento)
-{
   if(lobo.cargaOK)
   {
     var x = aleatorio(0, 420);
     var y = aleatorio(0, 420);
     papel.drawImage(lobo.imagen, x, y);
   }
+}
+
+function moverLobo(evento)
+{
   var movimiento = 5
   if(evento.keyCode == teclas.UP)
   {
