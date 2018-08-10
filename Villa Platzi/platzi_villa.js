@@ -1,10 +1,6 @@
 
-var teclas = {
-  UP: 38,
-  DOWN: 40,
-  LEFT: 37,
-  RIGHT: 39
-};
+var x = 0;
+var y = 0;
 
 var vp = document.getElementById("villaplatzi");
 var papel = vp.getContext("2d");
@@ -16,19 +12,24 @@ var fondo = {
 };
 var vaca = {
   url: "vaca.png",
-  cargaOK: false
+  cargaOK: false,
+  vacaX: aleatorio(0, 420),
+  vacaY: aleatorio(0, 420)
 };
 var pollo = {
   url: "pollo.png",
-  cargaOK: false
+  cargaOK: false,
+
 };
 var cerdo = {
   url: "cerdo.png",
-  cargaOK: false
+  cargaOK: false,
 };
 var lobo = {
   url: "lobo.png",
-  cargaOK: false
+  cargaOK: false,
+  loboX: aleatorio(0, 420),
+  loboY: aleatorio(0, 420)
 };
 
 fondo.imagen = new Image();
@@ -87,22 +88,24 @@ function dibujar(event)
   {
     for(var v=0; v < 5; v++)
     {
-      var x = aleatorio(0, 7);
-      var y = aleatorio(0, 7);
-      var x = x * 60;
-      var y = y * 60;
+      var x = vaca.vacaX;
+      var y = vaca.vacaY;
       papel.drawImage(vaca.imagen, x, y);
+      x = aleatorio(0, 420);
+      y = aleatorio(0, 420);
+      papel.drawImage(vaca.imagen, x, y);
+      console.log("x = " + x);
     }
   }
   if(pollo.cargaOK)
   {
-      for(var v=0; v < 5; v++)
-      {
-        var x = aleatorio(0, 420);
-        var y = aleatorio(0, 420);
-        papel.drawImage(pollo.imagen, x, y);
-      }
+    for(var v=0; v < 5; v++)
+    {
+      var x = aleatorio(0, 420);
+      var y = aleatorio(0, 420);
+      papel.drawImage(pollo.imagen, x, y);
     }
+  }
   if(cerdo.cargaOK)
   {
       for(var v=0; v < 5; v++)
@@ -114,22 +117,43 @@ function dibujar(event)
     }
   if(lobo.cargaOK)
   {
-    var x = aleatorio(0, 420);
-    var y = aleatorio(0, 420);
-    papel.drawImage(lobo.imagen, x, y);
+    papel.drawImage(lobo.imagen, lobo.loboX, lobo.loboY);
   }
 }
 
-
-
-function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo)
+function moverLobo(evento)
 {
-  lienzo.beginPath();
-  lienzo.strokeStyle = color;
-  lienzo.moveTo(xinicial, yinicial);
-  lienzo.lineTo(xfinal, yfinal);
-  lienzo.stroke();
-  lienzo.closePath();
+  var teclas = {
+    UP: 38,
+    DOWN: 40,
+    LEFT: 37,
+    RIGHT: 39
+  };
+  var movimiento = 25
+  if(evento.keyCode == teclas.UP)
+  {
+    lobo.loboX = lobo.loboX;
+    lobo.loboY = lobo.loboY - movimiento;
+    dibujar(lobo.imagen, lobo.loboX, lobo.loboY);
+  }
+  if(evento.keyCode == teclas.DOWN)
+  {
+    lobo.loboX = lobo.loboX;
+    lobo.loboY = lobo.loboY + movimiento;
+    dibujar(lobo.imagen, lobo.loboX, lobo.loboY);
+  }
+  if(evento.keyCode == teclas.LEFT)
+  {
+    lobo.loboX = lobo.loboX - movimiento;
+    lobo.loboY = lobo.loboY;
+    dibujar(lobo.imagen, lobo.loboX, lobo.loboY);
+  }
+  if(evento.keyCode == teclas.RIGHT)
+  {
+    lobo.loboX = lobo.loboX + movimiento;
+    lobo.loboY = lobo.loboY;
+    dibujar(lobo.imagen, lobo.loboX, lobo.loboY);
+  }
 }
 
 function aleatorio(min, maxi)
