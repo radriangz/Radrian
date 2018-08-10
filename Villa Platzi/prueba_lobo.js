@@ -41,11 +41,11 @@ function dibujar(event)
   }
   if(lobo.cargaOK)
   {
-    var x = aleatorio(0, 420);
-    var y = aleatorio(0, 420);
-    papel.drawImage(lobo.imagen, x, y);
-    x = aleatorio(0, 420);
-    y = aleatorio(0, 420);
+    var xx = aleatorio(0, 420);
+    var yy = aleatorio(0, 420);
+    papel.drawImage(lobo.imagen, xx, yy);
+    x = xx;
+    y = yy;
   }
 }
 
