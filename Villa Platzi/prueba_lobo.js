@@ -46,6 +46,7 @@ function dibujar(event)
     papel.drawImage(lobo.imagen, xx, yy);
     x = xx;
     y = yy;
+    console.log("x = " + xx);
   }
 }
 
@@ -76,12 +77,14 @@ function moverLobo(evento)
   }
 }
 
-function moverConTeclas(xinicial, yinicial, xfinal, yfinal, papel)
+function moverConTeclas(xinicial, yinicial, xfinal, yfinal, lienzo)
 {
-  papel.beginPath();
-  papel.moveTo(xinicial, yinicial);
-  papel.lineTo(xfinal, yfinal);
-  papel.closePath();
+  lienzo.beginPath();
+  lienzo.strokeStyle = "blue";
+  lienzo.moveTo(xinicial, yinicial);
+  lienzo.lineTo(xfinal, yfinal);
+  lienzo.stroke();
+  lienzo.closePath();
 }
 
 fondo.imagen = new Image();
