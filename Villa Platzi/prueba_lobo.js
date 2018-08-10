@@ -5,6 +5,9 @@ var teclas = {
   RIGHT: 39
 };
 
+var x = 0;
+var y = 0;
+
 var aDT = document.getElementById("areaDeTrabajo");
 var papel = aDT.getContext("2d");
 document.addEventListener("keyup", moverLobo);
@@ -41,11 +44,15 @@ function dibujar(event)
     var x = aleatorio(0, 420);
     var y = aleatorio(0, 420);
     papel.drawImage(lobo.imagen, x, y);
+    x = aleatorio(0, 420);
+    y = aleatorio(0, 420);
   }
 }
 
+
 function moverLobo(evento)
 {
+  alert("x = " + x);
   var movimiento = 5
   if(evento.keyCode == teclas.UP)
   {
