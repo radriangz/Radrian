@@ -12,7 +12,6 @@ var aDT = document.getElementById("areaDeTrabajo");
 var papel = aDT.getContext("2d");
 document.addEventListener("keyup", moverLobo);
 
-
 var fondo = {
   url: "tile.png",
   cargaOK: false
@@ -21,6 +20,14 @@ var lobo = {
   url: "lobo.png",
   cargaOK: false
 };
+
+fondo.imagen = new Image();
+fondo.imagen.src = fondo.url;
+fondo.imagen.addEventListener("load", cargarFondo);
+
+lobo.imagen = new Image();
+lobo.imagen.src = lobo.url;
+lobo.imagen.addEventListener("load", cargarLobo);
 
 function cargarFondo()
 {
@@ -46,38 +53,40 @@ function dibujar(event)
     papel.drawImage(lobo.imagen, xx, yy);
     x = xx;
     y = yy;
-    console.log("x = " + xx);
   }
 }
 
 
 function moverLobo(evento)
 {
-  alert("x = " + x);
-  var movimiento = 5
+  var movimiento = 25
   if(evento.keyCode == teclas.UP)
   {
-    moverConTeclas(x, y, x, y - movimiento, papel);
-    y = y - movimiento;
+    xx = y - movimiento;
+    yy = y;
+    dibujar(xx, yy);
   }
   if(evento.keyCode == teclas.DOWN)
   {
-    moverConTeclas(x, y, x, y + movimiento, papel);
-    y = y + movimiento;
+    xx = x;
+    yy = y + movimiento;
+    dibujar(xx, yy);
   }
   if(evento.keyCode == teclas.LEFT)
   {
-    moverConTeclas(x, y, x - movimiento, y, papel);
-    x = x - movimiento;
+    xx = x - movimiento;
+    yy = y;
+    dibujar(xx, yy);
   }
   if(evento.keyCode == teclas.RIGHT)
   {
-    moverConTeclas(x, y, x + movimiento, y, papel);
-    x = x + movimiento;
+    xx = x + movimiento;
+    yy = y;
+    dibujar(xx, yy);
   }
 }
 
-function moverConTeclas(xinicial, yinicial, xfinal, yfinal, lienzo)
+/*function moverConTeclas(xinicial, yinicial, xfinal, yfinal, lienzo)
 {
   lienzo.beginPath();
   lienzo.strokeStyle = "blue";
@@ -85,15 +94,9 @@ function moverConTeclas(xinicial, yinicial, xfinal, yfinal, lienzo)
   lienzo.lineTo(xfinal, yfinal);
   lienzo.stroke();
   lienzo.closePath();
-}
+}*/
 
-fondo.imagen = new Image();
-fondo.imagen.src = fondo.url;
-fondo.imagen.addEventListener("load", cargarFondo);
 
-lobo.imagen = new Image();
-lobo.imagen.src = lobo.url;
-lobo.imagen.addEventListener("load", cargarLobo);
 
 function aleatorio(min, maxi)
 {
