@@ -18,7 +18,9 @@ var fondo = {
 };
 var lobo = {
   url: "lobo.png",
-  cargaOK: false
+  cargaOK: false,
+  lobox: aleatorio(0, 420),
+  loboy: aleatorio(0, 420),
 };
 
 fondo.imagen = new Image();
@@ -48,11 +50,7 @@ function dibujar(event)
   }
   if(lobo.cargaOK)
   {
-    var xx = aleatorio(0, 420);
-    var yy = aleatorio(0, 420);
-    papel.drawImage(lobo.imagen, xx, yy);
-    x = xx;
-    y = yy;
+    papel.drawImage(lobo.imagen, lobo.lobox, lobo.loboy);
   }
 }
 
@@ -62,27 +60,27 @@ function moverLobo(evento)
   var movimiento = 25
   if(evento.keyCode == teclas.UP)
   {
-    xx = y - movimiento;
-    yy = y;
-    dibujar(xx, yy);
+    lobo.lobox = lobo.lobox;
+    lobo.loboy = lobo.loboy - movimiento;
+    dibujar(lobo.imagen, lobo.lobox, lobo.loboy);
   }
   if(evento.keyCode == teclas.DOWN)
   {
-    xx = x;
-    yy = y + movimiento;
-    dibujar(xx, yy);
+    lobo.lobox = lobo.lobox;
+    lobo.loboy = lobo.loboy + movimiento;
+    dibujar(lobo.imagen, lobo.lobox, lobo.loboy);
   }
   if(evento.keyCode == teclas.LEFT)
   {
-    xx = x - movimiento;
-    yy = y;
-    dibujar(xx, yy);
+    lobo.lobox = lobo.lobox - movimiento;
+    lobo.loboy = lobo.loboy;
+    dibujar(lobo.imagen, lobo.lobox, lobo.loboy);
   }
   if(evento.keyCode == teclas.RIGHT)
   {
-    xx = x + movimiento;
-    yy = y;
-    dibujar(xx, yy);
+    lobo.lobox = lobo.lobox + movimiento;
+    lobo.loboy = lobo.loboy;
+    dibujar(lobo.imagen, lobo.lobox, lobo.loboy);
   }
 }
 
