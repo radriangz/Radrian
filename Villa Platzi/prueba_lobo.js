@@ -1,9 +1,3 @@
-var teclas = {
-  UP: 38,
-  DOWN: 40,
-  LEFT: 37,
-  RIGHT: 39
-};
 
 var x = 0;
 var y = 0;
@@ -54,9 +48,14 @@ function dibujar(event)
   }
 }
 
-
 function moverLobo(evento)
 {
+  var teclas = {
+    UP: 38,
+    DOWN: 40,
+    LEFT: 37,
+    RIGHT: 39
+  };
   var movimiento = 25
   if(evento.keyCode == teclas.UP)
   {
@@ -83,18 +82,6 @@ function moverLobo(evento)
     dibujar(lobo.imagen, lobo.lobox, lobo.loboy);
   }
 }
-
-/*function moverConTeclas(xinicial, yinicial, xfinal, yfinal, lienzo)
-{
-  lienzo.beginPath();
-  lienzo.strokeStyle = "blue";
-  lienzo.moveTo(xinicial, yinicial);
-  lienzo.lineTo(xfinal, yfinal);
-  lienzo.stroke();
-  lienzo.closePath();
-}*/
-
-
 
 function aleatorio(min, maxi)
 {

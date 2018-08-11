@@ -6,32 +6,26 @@ lienzo.addEventListener("mousedown", comienzaLinea);
 lienzo.addEventListener("mousemove", dibujarLineaMouseDown);
 lienzo.addEventListener("mouseup", terminarLinea);
 
-
-//Si activo la linea del addEventListener ("mouseup", terminar linea); dibuja la linea al entrar al lienzo
-// si desactivo la linea addEventListener("mouseup", terminarLinea); se toman xi/yi=0 y sale una linea rara
-
-
 var xi = 0;
 var yi = 0;
 var clickRaton = false;
 
-function comienzaLinea(event) //Por qué se le pone el event?
+function comienzaLinea(mousedown) //Por qué se le pone el event?
 {
   clickRaton = true;
-  xi = event.layerX; //Según yo, porque el event es lo que lo activa, el event mousedown lo activa,
+  xi = mousedown.layerX; //Según yo, porque el event es lo que lo activa, el event mousedown lo activa,
                     //y de ese evento se consiguen las propiedades layerX/Y
-  yi = event.layerY;
+  yi = mousedown.layerY;
 }
 
 function dibujarLineaMouseDown(event)
 {
   if (clickRaton) //Yo le puse originalmente =true pero no funciona con =true
   {
-  var xf = event.layerX + event.movementX;
-  var yf = event.layerY + event.movementY;
+  var xf = event.layerX;
+  var yf = event.layerY;
 
   dibujarLinea("black", xi, yi, xf, yf, papel, 3);
-
   xi = xf;
   yi = yf;
   }
