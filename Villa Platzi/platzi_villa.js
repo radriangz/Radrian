@@ -31,7 +31,7 @@ var vacas = {
 
 var pollos = {
   url: "pollo.png",
-  cargaOK: false
+  cargaOK: false,
   pollo1: 0,
   pollo2: 0,
   pollo3: 0,
@@ -62,11 +62,11 @@ vacas.imagen.src = vacas.url;
 vacas.imagen.addEventListener("load", cargarVacas);
 
 pollos.imagen = new Image();
-pollos.imagen.src = pollo.url;
+pollos.imagen.src = pollos.url;
 pollos.imagen.addEventListener("load", cargarPollos);
 
 cerdos.imagen = new Image();
-cerdos.imagen.src = cerdo.url;
+cerdos.imagen.src = cerdos.url;
 cerdos.imagen.addEventListener("load", cargarCerdos);
 
 function cargarFondo() {
@@ -159,20 +159,42 @@ function dibujar(event) {
         }
         else if (v == 4) {
           pollos.pollo5 = pollo;
-          //console.log("guardando vaca5: " + vacas.vaca5.posicionX + ", " + vacas.vaca5.posicionY);
         }
         papel.drawImage(pollos.imagen, pollo.posicionX, pollo.posicionY);
       }
     }
   }
 
-  if(cerdo.cargaOK) {
+  if(cerdos.cargaOK & fondo.dibujarFondo) {
       for(var v=0; v < 5; v++) {
-        var x = aleatorio(0, 420);
-        var y = aleatorio(0, 420);
-        papel.drawImage(cerdo.imagen, x, y);
+          var cerdo = {
+            url: "cerdo.png",
+            cargaOK: false,
+            posicionX: aleatorio(0,420),
+            posicionY: aleatorio(0,420),
+          }
+
+        if(v == 0) {
+          if (cerdos.cerdo1 == 0) {
+            cerdos.cerdo1 = cerdo;
+          }
+        }
+        else if(v == 1) {
+            cerdos.cerdo2 = cerdo;
+        }
+        else if(v == 2) {
+          cerdos.cerdo3 = cerdo;
+        }
+        else if(v == 3) {
+          cerdos.cerdo4 = cerdo;
+        }
+        else if (v == 4) {
+          cerdos.cerdo5 = cerdo;
+        }
+        papel.drawImage(cerdos.imagen, cerdo.posicionX, cerdo.posicionY);
       }
     }
+
   if(lobo.cargaOK) {
     papel.drawImage(lobo.imagen, lobo.loboX, lobo.loboY);
   }
@@ -234,6 +256,13 @@ function dibujarLoboSeMueve () {
       papel.drawImage(pollos.imagen, pollos.pollo3.posicionX, pollos.pollo3.posicionY);
       papel.drawImage(pollos.imagen, pollos.pollo4.posicionX, pollos.pollo4.posicionY);
       papel.drawImage(pollos.imagen, pollos.pollo5.posicionX, pollos.pollo5.posicionY);
+    }
+  if(cerdos.cargaOK) {
+    papel.drawImage(cerdos.imagen, cerdos.cerdo1.posicionX, cerdos.cerdo1.posicionY);
+    papel.drawImage(cerdos.imagen, cerdos.cerdo2.posicionX, cerdos.cerdo2.posicionY);
+    papel.drawImage(cerdos.imagen, cerdos.cerdo3.posicionX, cerdos.cerdo3.posicionY);
+    papel.drawImage(cerdos.imagen, cerdos.cerdo4.posicionX, cerdos.cerdo4.posicionY);
+    papel.drawImage(cerdos.imagen, cerdos.cerdo5.posicionX, cerdos.cerdo5.posicionY);
     }
   if(lobo.cargaOK) {
     papel.drawImage(lobo.imagen, lobo.loboX, lobo.loboY);
