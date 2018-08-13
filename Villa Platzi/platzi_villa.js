@@ -1,3 +1,4 @@
+
 var vp = document.getElementById("villaplatzi");
 var papel = vp.getContext("2d");
 document.addEventListener("keyup", moverLobo);
@@ -17,11 +18,14 @@ var lobo = {
   loboY: aleatorio(0, 420)
 }
 
-var vaca = {
-  url: "vaca.png",
+var vacas = {
+  url:"vaca.png",
   cargaOK: false,
-  //vacaX: aleatorio(0, 420),
-  //vacaY: aleatorio(0, 420)
+  vaca1:0,
+  vaca2:0,
+  vaca3:0,
+  vaca4:0,
+  vaca5:0
 }
 
 var pollo = {
@@ -42,9 +46,9 @@ lobo.imagen = new Image();
 lobo.imagen.src = lobo.url;
 lobo.imagen.addEventListener("load", cargarLobo);
 
-vaca.imagen = new Image();
-vaca.imagen.src = vaca.url;
-vaca.imagen.addEventListener("load", cargarVacas);
+vacas.imagen = new Image();
+vacas.imagen.src = vacas.url;
+vacas.imagen.addEventListener("load", cargarVacas);
 
 pollo.imagen = new Image();
 pollo.imagen.src = pollo.url;
@@ -60,7 +64,7 @@ function cargarFondo() {
 }
 
 function cargarVacas() {
-  vaca.cargaOK = true;
+  vacas.cargaOK = true;
   dibujar();
 }
 
@@ -81,46 +85,71 @@ function cargarLobo() {
 
 function dibujar(event) {
   if(fondo.cargaOK) {
-    console.log("dibujando fondo");
+    //console.log("dibujando fondo");
     papel.drawImage(fondo.imagen, 0, 0);
   }
-  if(vaca.cargaOK) {
+  if(vacas.cargaOK) {
+    console.log("dibujando vacas");
     for(var v=0; v < 5; v++) {
-      console.log("dibujando vacas");
-      //var x = vaca.vacaX;
-      //var y = vaca.vacaY;
-      //papel.drawImage(vaca.imagen, vaca.vacaX, vaca.vacaY);
-      papel.drawImage(vaca.imagen, aleatorio(0,420), aleatorio(0,420));
-      /*var x = aleatorio(0, 420);
-      var y = aleatorio(0, 420);
-      papel.drawImage(vaca.imagen, x, y);
-      console.log("x = " + x);*/
+      var vaca = {
+        url: "vaca.png",
+        cargaOK: false,
+        posicionX: aleatorio(0,420),
+        posicionY: aleatorio(0,420)
+      }
+
+      if(v == 0) {
+        if (vacas.vaca1 == 0) {
+          vacas.vaca1 = vaca;
+          console.log("guardando vaca1: " + vacas.vaca1.posicionX + ", " + vacas.vaca1.posicionY);
+
+        }
+      }
+      else if(v == 1) {
+        vacas.vaca2 = vaca;
+        console.log("guardando vaca2: " + vacas.vaca2.posicionX + ", " + vacas.vaca2.posicionY);
+      }
+      else if(v == 2) {
+        vacas.vaca3 = vaca;
+        console.log("guardando vaca3: " + vacas.vaca3.posicionX + ", " + vacas.vaca3.posicionY);
+      }
+      else if(v == 3) {
+        vacas.vaca4 = vaca;
+        console.log("guardando vaca4: " + vacas.vaca4.posicionX + ", " + vacas.vaca4.posicionY);
+      }
+      else if (v == 4) {
+        vacas.vaca5 = vaca;
+        console.log("guardando vaca5: " + vacas.vaca5.posicionX + ", " + vacas.vaca5.posicionY);
+      }
+      papel.drawImage(vacas.imagen, vaca.posicionX, vaca.posicionY);
     }
   }
   if(pollo.cargaOK) {
     for(var v=0; v < 5; v++) {
-      console.log("dibujando pollos");
       var x = aleatorio(0, 420);
       var y = aleatorio(0, 420);
-      console.log(x + ", " + y)
       papel.drawImage(pollo.imagen, x, y);
     }
   }
   if(cerdo.cargaOK) {
       for(var v=0; v < 5; v++) {
-        console.log("dibujando cerdos");
         var x = aleatorio(0, 420);
         var y = aleatorio(0, 420);
         papel.drawImage(cerdo.imagen, x, y);
       }
     }
   if(lobo.cargaOK) {
-    console.log("dibujando lobo");
     papel.drawImage(lobo.imagen, lobo.loboX, lobo.loboY);
   }
 }
 
 function moverLobo(evento) {
+  console.log("vaca1: " + vacas.vaca1.posicionX + ", " + vacas.vaca1.posicionY);
+  console.log("vaca2: " + vacas.vaca2.posicionX + ", " + vacas.vaca2.posicionY);
+  console.log("vaca3: " + vacas.vaca3.posicionX + ", " + vacas.vaca3.posicionY);
+  console.log("vaca4: " + vacas.vaca4.posicionX + ", " + vacas.vaca4.posicionY);
+  console.log("vaca5: " + vacas.vaca5.posicionX + ", " + vacas.vaca5.posicionY);
+
   var teclas = {
     UP: 38,
     DOWN: 40,
@@ -133,22 +162,38 @@ function moverLobo(evento) {
   if(evento.keyCode == teclas.UP) {
     lobo.loboX = lobo.loboX;
     lobo.loboY = lobo.loboY - movimiento;
-    dibujar(lobo.imagen, lobo.loboX, lobo.loboY);
+    dibujarLoboSeMueve(lobo.imagen, lobo.loboX, lobo.loboY);
   }
   if(evento.keyCode == teclas.DOWN) {
     lobo.loboX = lobo.loboX;
     lobo.loboY = lobo.loboY + movimiento;
-    dibujar(lobo.imagen, lobo.loboX, lobo.loboY);
+    dibujarLoboSeMueve(lobo.imagen, lobo.loboX, lobo.loboY);
   }
   if(evento.keyCode == teclas.LEFT) {
     lobo.loboX = lobo.loboX - movimiento;
     lobo.loboY = lobo.loboY;
-    dibujar(lobo.imagen, lobo.loboX, lobo.loboY);
+    dibujarLoboSeMueve(lobo.imagen, lobo.loboX, lobo.loboY);
   }
   if(evento.keyCode == teclas.RIGHT) {
     lobo.loboX = lobo.loboX + movimiento;
     lobo.loboY = lobo.loboY;
-    dibujar(lobo.imagen, lobo.loboX, lobo.loboY);
+    dibujarLoboSeMueve(lobo.imagen, lobo.loboX, lobo.loboY);
+  }
+}
+
+function dibujarLoboSeMueve () {
+  if(fondo.cargaOK) {
+    papel.drawImage(fondo.imagen, 0, 0);
+  }
+  if(vacas.cargaOK) {
+      papel.drawImage(vacas.imagen, vacas.vaca1.posicionX, vacas.vaca1.posicionY);
+      papel.drawImage(vacas.imagen, vacas.vaca2.posicionX, vacas.vaca2.posicionY);
+      papel.drawImage(vacas.imagen, vacas.vaca3.posicionX, vacas.vaca3.posicionY);
+      papel.drawImage(vacas.imagen, vacas.vaca4.posicionX, vacas.vaca4.posicionY);
+      papel.drawImage(vacas.imagen, vacas.vaca5.posicionX, vacas.vaca5.posicionY);
+  }
+  if(lobo.cargaOK) {
+    papel.drawImage(lobo.imagen, lobo.loboX, lobo.loboY);
   }
 }
 
