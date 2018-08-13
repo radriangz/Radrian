@@ -8,7 +8,8 @@ var y = 0;
 
 var fondo = {
   url: "tile.png",
-  cargaOK: false
+  cargaOK: false,
+  dibujarFondo: false
 }
 
 var lobo = {
@@ -85,24 +86,25 @@ function cargarLobo() {
 
 function dibujar(event) {
   if(fondo.cargaOK) {
-    //console.log("dibujando fondo");
+    console.log("dibujando fondo");
     papel.drawImage(fondo.imagen, 0, 0);
+    fondo.dibujarFondo = true;
   }
-  if(vacas.cargaOK) {
+  if(vacas.cargaOK & fondo.dibujarFondo) {
+    console.log( "x = " + vacas.vaca1.posicionX + ", y = " + vacas.vaca1.posicionY);
     console.log("dibujando vacas");
     for(var v=0; v < 5; v++) {
       var vaca = {
         url: "vaca.png",
         cargaOK: false,
         posicionX: aleatorio(0,420),
-        posicionY: aleatorio(0,420)
+        posicionY: aleatorio(0,420),
       }
 
       if(v == 0) {
         if (vacas.vaca1 == 0) {
           vacas.vaca1 = vaca;
           console.log("guardando vaca1: " + vacas.vaca1.posicionX + ", " + vacas.vaca1.posicionY);
-
         }
       }
       else if(v == 1) {
