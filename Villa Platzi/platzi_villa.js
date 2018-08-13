@@ -95,119 +95,94 @@ function cargarLobo() {
 }
 
 function dibujar(event) {
+  var N = 5;
   if(fondo.cargaOK) {
-    console.log("dibujando fondo");
     papel.drawImage(fondo.imagen, 0, 0);
     fondo.dibujarFondo = true;
   }
   if(vacas.cargaOK & fondo.dibujarFondo) {
-    for(var v=0; v < 5; v++) {
+    for(var v=0; v < N; v++) {
       var vaca = {
-        url: "vaca.png",
         cargaOK: false,
         posicionX: aleatorio(0,420),
         posicionY: aleatorio(0,420),
       }
-
       if(v == 0) {
-        if (vacas.vaca1 == 0) {
-          vacas.vaca1 = vaca;
-        }
+        vacas.vaca1 = vaca;
       }
-      else if(v == 1) {
+      if(v == 1) {
         vacas.vaca2 = vaca;
       }
-      else if(v == 2) {
+      if(v == 2) {
         vacas.vaca3 = vaca;
       }
-      else if(v == 3) {
+      if(v == 3) {
         vacas.vaca4 = vaca;
       }
-      else if (v == 4) {
+      if (v == 4) {
         vacas.vaca5 = vaca;
-        //console.log("guardando vaca5: " + vacas.vaca5.posicionX + ", " + vacas.vaca5.posicionY);
       }
       papel.drawImage(vacas.imagen, vaca.posicionX, vaca.posicionY);
     }
   }
   if(pollos.cargaOK & fondo.dibujarFondo) {
-    for(var v=0; v < 5; v++) {
-      var x = aleatorio(0, 420);
-      var y = aleatorio(0, 420);
-
-      for(var v=0; v < 5; v++) {
+      for(var v=0; v < N; v++) {
         var pollo = {
-          url: "pollo.png",
           cargaOK: false,
           posicionX: aleatorio(0,420),
           posicionY: aleatorio(0,420),
         }
 
         if(v == 0) {
-          if (pollos.pollo1 == 0) {
-            pollos.pollo1 = pollo;
-          }
+          pollos.pollo1 = pollo;
         }
-        else if(v == 1) {
+        if(v == 1) {
           pollos.pollo2 = pollo;
         }
-        else if(v == 2) {
+        if(v == 2) {
           pollos.pollo3 = pollo;
         }
-        else if(v == 3) {
+        if(v == 3) {
           pollos.pollo4 = pollo;
         }
-        else if (v == 4) {
+        if (v == 4) {
           pollos.pollo5 = pollo;
         }
         papel.drawImage(pollos.imagen, pollo.posicionX, pollo.posicionY);
       }
     }
-  }
-
   if(cerdos.cargaOK & fondo.dibujarFondo) {
-      for(var v=0; v < 5; v++) {
+      for(var v=0; v < N; v++) {
           var cerdo = {
-            url: "cerdo.png",
             cargaOK: false,
             posicionX: aleatorio(0,420),
             posicionY: aleatorio(0,420),
           }
 
         if(v == 0) {
-          if (cerdos.cerdo1 == 0) {
-            cerdos.cerdo1 = cerdo;
-          }
+          cerdos.cerdo1 = cerdo;
         }
-        else if(v == 1) {
+        if(v == 1) {
             cerdos.cerdo2 = cerdo;
         }
-        else if(v == 2) {
+        if(v == 2) {
           cerdos.cerdo3 = cerdo;
         }
-        else if(v == 3) {
+        if(v == 3) {
           cerdos.cerdo4 = cerdo;
         }
-        else if (v == 4) {
+        if (v == 4) {
           cerdos.cerdo5 = cerdo;
         }
         papel.drawImage(cerdos.imagen, cerdo.posicionX, cerdo.posicionY);
       }
     }
-
-  if(lobo.cargaOK) {
+  if(lobo.cargaOK & fondo.dibujarFondo) {
     papel.drawImage(lobo.imagen, lobo.loboX, lobo.loboY);
   }
 }
 
 function moverLobo(evento) {
-  /*console.log("vaca1: " + vacas.vaca1.posicionX + ", " + vacas.vaca1.posicionY);
-  console.log("vaca2: " + vacas.vaca2.posicionX + ", " + vacas.vaca2.posicionY);
-  console.log("vaca3: " + vacas.vaca3.posicionX + ", " + vacas.vaca3.posicionY);
-  console.log("vaca4: " + vacas.vaca4.posicionX + ", " + vacas.vaca4.posicionY);
-  console.log("vaca5: " + vacas.vaca5.posicionX + ", " + vacas.vaca5.posicionY);
-  */
-
   var teclas = {
     UP: 38,
     DOWN: 40,
