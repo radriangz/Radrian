@@ -95,15 +95,14 @@ function cargarLobo() {
 }
 
 function dibujar(event) {
-  var N = 5;
+  var SON_CINCO_ANIMALES = 5;
   if(fondo.cargaOK) {
     papel.drawImage(fondo.imagen, 0, 0);
     fondo.dibujarFondo = true;
   }
   if(vacas.cargaOK & fondo.dibujarFondo) {
-    for(var v=0; v < N; v++) {
+    for(var v=0; v < SON_CINCO_ANIMALES; v++) {
       var vaca = {
-        cargaOK: false,
         posicionX: aleatorio(0,420),
         posicionY: aleatorio(0,420),
       }
@@ -126,9 +125,8 @@ function dibujar(event) {
     }
   }
   if(pollos.cargaOK & fondo.dibujarFondo) {
-      for(var v=0; v < N; v++) {
+      for(var v=0; v < SON_CINCO_ANIMALES; v++) {
         var pollo = {
-          cargaOK: false,
           posicionX: aleatorio(0,420),
           posicionY: aleatorio(0,420),
         }
@@ -152,9 +150,8 @@ function dibujar(event) {
       }
     }
   if(cerdos.cargaOK & fondo.dibujarFondo) {
-      for(var v=0; v < N; v++) {
+      for(var v=0; v < SON_CINCO_ANIMALES; v++) {
           var cerdo = {
-            cargaOK: false,
             posicionX: aleatorio(0,420),
             posicionY: aleatorio(0,420),
           }
