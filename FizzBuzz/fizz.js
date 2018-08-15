@@ -2,19 +2,31 @@ var numeros = 100;
 
 for(var i = 1; i <= 100; i++)
 {
-  if(i % 3 == 0)
+  if(esDivisible(i, 3))
   {
     document.write("Fizz");
   }
 
-  if(i % 5 == 0)
+  if (esDivisible(i, 5))
   {
     document.write("Buzz");
   }
 
-  if(i % 3 != 0 && i % 5 != 0)
+  if(!esDivisible(i, 3) && !esDivisible(i, 5))
   {
     document.write(i);
   }
   document.write("<br />");
+}
+
+function esDivisible(num, divisor)
+{
+  if(num % divisor == 0)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
