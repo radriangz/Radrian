@@ -1,3 +1,4 @@
+var SON_CINCO_ANIMALES = 5;
 
 var vp = document.getElementById("villaplatzi");
 var papel = vp.getContext("2d");
@@ -95,7 +96,6 @@ function cargarLobo() {
 }
 
 function dibujar(event) {
-  var SON_CINCO_ANIMALES = 5;
   if(fondo.cargaOK) {
     papel.drawImage(fondo.imagen, 0, 0);
     fondo.dibujarFondo = true;
@@ -216,6 +216,7 @@ function dibujarLoboSeMueve () {
     papel.drawImage(fondo.imagen, 0, 0);
   }
   if(vacas.cargaOK) {
+      moverVacasEnDireccionAleatoria();
       papel.drawImage(vacas.imagen, vacas.vaca1.posicionX, vacas.vaca1.posicionY);
       papel.drawImage(vacas.imagen, vacas.vaca2.posicionX, vacas.vaca2.posicionY);
       papel.drawImage(vacas.imagen, vacas.vaca3.posicionX, vacas.vaca3.posicionY);
@@ -245,4 +246,47 @@ function aleatorio(min, maxi) {
   var resultado;
   resultado = Math.floor(Math.random() * (maxi - min +1)) + min;
   return resultado;
+}
+
+class Movimiento {
+  constructor() {
+    this.x = 0;
+    this.y = 0;
+  }
+}
+
+function generarMovimientoAnimal () {
+  var movimiento = new Movimiento();
+  movimiento.x = aleatorio(-1,1) * 25;
+  movimiento.y = aleatorio(-1,1) * 25;
+
+  return movimiento;
+}
+
+function moverVacasEnDireccionAleatoria () {
+
+  for (v = 0; v < SON_CINCO_ANIMALES; v++) {
+    var movimiento = generarMovimientoAnimal();
+
+    if (v == 0) {
+      vacas.vaca1.posicionX = vacas.vaca1.posicionX + movimiento.x;
+      vacas.vaca1.posicionY = vacas.vaca1.posicionY + movimiento.y;
+    }
+    if (v == 1) {
+      vacas.vaca2.posicionX = vacas.vaca2.posicionX + movimiento.x;
+      vacas.vaca2.posicionY = vacas.vaca2.posicionX + movimiento.x;
+    }
+    if (v == 2) {
+      vacas.vaca3.posicionX = vacas.vaca3.posicionX + movimiento.x;
+      vacas.vaca3.posicionY = vacas.vaca3.posicionX + movimiento.x;
+    }
+    if (v == 3) {
+      vacas.vaca4.posicionX = vacas.vaca4.posicionX + movimiento.x;
+      vacas.vaca4.posicionY = vacas.vaca4.posicionX + movimiento.x;
+    }
+    if (v == 4) {
+      vacas.vaca5.posicionX = vacas.vaca5.posicionX + movimiento.x;
+      vacas.vaca5.posicionY = vacas.vaca5.posicionX + movimiento.x;
+    }
+  }
 }
