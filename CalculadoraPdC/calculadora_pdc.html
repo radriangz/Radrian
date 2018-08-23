@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Calculadora Hyperfocal</title>
+  </head>
+  <body>
+    <h1>Calculadora Hiperfocal</h1>
+
+    <p>Esta herramienta te permitirá calcular la distancia hyperfocal de tu lente.</p>
+    <p>Solo debes escoger la información que sea correcta.
+
+    <p><strong>Cámara que utilizas</strong>
+      <select name="listaCamaras">
+      <option selected value="0"> Elige una opción </option>
+      <option value="1">Canon T5i (APS-C)</option>
+      </select>
+    </p>
+
+    <p><strong>Distancia focal de tu lente:</strong>
+        <select name="distanciasFocales">
+        <option selected value="0"> Elige una opción </option>
+        <option value="1">17</option>
+        <option value="2">35</option>
+        <option value="3">50</option>
+        </select>
+      mm
+    </p>
+
+    <p><strong>Apertura de tu lente:</strong> f/
+        <select name="fstop">
+        <option selected value="0"> Elige una opción </option>
+        <option value="1">2.8</option>
+        <option value="2">4</option>
+        <option value="3">5.6</option>
+        </select>
+    </p>
+
+    <button type="submit" id="iniciarCalculo">Hacer cálculo</button>
+
+    <hr>
+
+    <p><label for="distHiperfocal"><strong>Distancia Hiperfocal:</strong></label>
+        <output id="distHiperfocal"></output>
+    </p>
+
+    <p><label for="limiteHiperfocalCercano"><strong>Límite Hiperfocal más cercano:</strong></label>
+        <output id="limiteHiperfocalCercano"></output>
+    </p>
+
+    <p><img src="distancia_hiperfocal.gif"></p>
+
+
+    <script src="calculadora_pdc.js">
+    </script>
+  </body>
+</html>
