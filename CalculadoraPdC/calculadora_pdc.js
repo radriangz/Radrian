@@ -14,8 +14,15 @@ function calculaHiperfocal () {
 
   if (isFinite(hiperfocal) && (hiperfocal > 0)) {
     distHiperfocal.innerHTML = parseFloat(hiperfocal/1000).toFixed(2) + " m";
+
     limiteHiperfocalCercano.innerHTML =
     parseFloat((hiperfocal/1000)/2).toFixed(1) + " m";
+
+    distHiperfocalImg.innerHTML =
+    "</strong>Distancia Hiperfocal: </strong>" + distHiperfocal.innerHTML;
+
+    hiperfocalCercano.innerHTML =
+    "Hiperfocal Cercano: " + limiteHiperfocalCercano.innerHTML;
   }
   else {
     alert("Hace falta elegir alguna función");

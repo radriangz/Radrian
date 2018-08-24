@@ -1,0 +1,17 @@
+
+.contenedor{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.limiteHiperfocalCercano{
+    position: absolute;
+    top: 13%;
+    left: 15%;
+}
+.distHiperfocal{
+    position: absolute;
+    top: 75%;
+    left: 35%;
+}
